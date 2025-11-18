@@ -8,6 +8,12 @@ const state = {
 
 const SYMBOLS = [`+`, `-`];
 
+const randNum = (stateVar) => {
+  const newNum = Math.floor(Math.random() * 10);
+  stateVar = randNum;
+  render();
+}
+
 const render = () => {
   const $app = document.querySelector(`#app`);
   $app.innerHTML = `
