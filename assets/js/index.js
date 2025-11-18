@@ -27,13 +27,8 @@ const addCarrot = () => {
 }
 
 const testAnswer = (num) => {
-  const { firstNum, secondNum } = state;
-  if (state.symbol === `+`) {
-    state.rightAnswer = firstNum + secondNum;
-  }
-  else {
-    state.rightAnswer = firstNum - secondNum;
-  }
+  const { firstNum, secondNum, symbol} = state;
+  state.rightAnswer = eval(`${firstNum}${secondNum}${symbol}`);
   if (num !== rightAnswer) {
     state.isRightAnswer = false;
   }
