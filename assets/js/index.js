@@ -3,7 +3,7 @@ const state = {
   secondNum: 0,
   symbol: null,
   carrotCount: 0,
-  tryAgain: `hide`
+  isRightAnswer: true
 }
 
 const SYMBOLS = [`+`, `-`];
@@ -24,6 +24,21 @@ const addCarrot = () => {
   state.carrotCount++
   render();
 }
+
+const testAnswer = (num) => {
+  const { firstNum, secondNum } = state;
+  let rightAnswer = 0;
+  if (state.symbol === `+`) {
+    rightAnswer = firstNum + secondNum;
+  }
+  else {
+    rightAnswer = firstNum - secondNum;
+  }
+  if (num !== rightAnswer) {
+    state.isRightAnswer = false;
+  }
+  render();
+} 
 
 const render = () => {
   const $app = document.querySelector(`#app`);
