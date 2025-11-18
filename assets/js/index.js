@@ -1,39 +1,24 @@
 const state = {
-  firstNum: 0,
-  secondNum: 0,
-  symbol: null,
   carrotCount: 0,
   rightAnswer: 0,
-  isRightAnswer: true
 }
 
 const SYMBOLS = [`+`, `-`];
 
-const randNum = (stateVar) => {
+const randNum = () => {
   const newNum = Math.floor(Math.random() * 10);
-  stateVar = newNum;
-  render();
+  return newNum;
 }
 
 const randSymbol = () => {
   const newSymIndex = Math.floor(Math.random() * SYMBOLS.length);
-  state.symbol = SYMBOLS[newSymIndex];
-  render();
+  return SYMBOLS[newSymIndex];
 }
 
 const addCarrot = () => {
-  state.carrotCount++
+  state.carrotCount++;
   render();
 }
-
-const testAnswer = (num) => {
-  const { firstNum, secondNum, symbol} = state;
-  state.rightAnswer = eval(`${firstNum}${secondNum}${symbol}`);
-  if (num !== rightAnswer) {
-    state.isRightAnswer = false;
-  }
-  render();
-} 
 
 const render = () => {
   const $app = document.querySelector(`#app`);
