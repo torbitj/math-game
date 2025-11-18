@@ -32,7 +32,7 @@ const CarrotCount = () => {
   return $carrorEl;
 }
 
-const MathElement = () => {
+const MathForm = () => {
   const $form = document.createElement(`form`);
   const equationEl = document.createElement(`p`);
   const firstNum = randNum();
@@ -41,13 +41,14 @@ const MathElement = () => {
   calcAnswer(`${firstNum}${operator}${secondNum}`)
   equationEl.innerText = `${firstNum} ${operator} ${secondNum}`;
   $form.innerHTML = `
-  ${equationEl}
+  <Equation></Equation>
   <label>
       &nbsp;=&nbsp;
       <input name="guess" type="number" />
   </label>
   <button type="submit">Submit Answer</button>
   `;
+  $form.querySelector(`Equation`).replaceWith(equationEl);
   $form.addEventListener("submit", (event) => {
     event.preventDefault();
     const messageEL = document.querySelector(`h3`);
@@ -55,12 +56,12 @@ const MathElement = () => {
     const userAnswer = Number(formData.get(`guess`));
     const { rightAnswer } = state;
     if (userAnswer === rightAnswer) {
-      messageEL.innerText = `Great Job!`;
       addCarrot();
     } else {
       messageEL.innerText = `Please try again`;
     }
   });
+  return $form;
 }
 
 const render = () => {
@@ -68,10 +69,11 @@ const render = () => {
   $app.innerHTML = `
   <h1>Bunny Math</h1>
   <CarrotCount></CarrotCount>
-  <MathForm></MathForm>
+  <MathForm id="math-form"></MathForm>
   <h3></h3>`;
 
   document.querySelector(`CarrotCount`).replaceWith(CarrotCount());
+  document.querySelector(`#math-form`).replaceWith(MathForm());
 }
 
 render();
