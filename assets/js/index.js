@@ -11,7 +11,7 @@ const SYMBOLS = [`+`, `-`];
 
 const randNum = (stateVar) => {
   const newNum = Math.floor(Math.random() * 10);
-  stateVar = randNum;
+  stateVar = newNum;
   render();
 }
 
