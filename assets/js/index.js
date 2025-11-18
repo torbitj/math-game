@@ -20,6 +20,11 @@ const randSymbol = () => {
   render();
 }
 
+const addCarrot = () => {
+  state.carrotCount++
+  render();
+}
+
 const render = () => {
   const $app = document.querySelector(`#app`);
   $app.innerHTML = `
