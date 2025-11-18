@@ -6,6 +6,8 @@ const state = {
   tryAgain: `hide`
 }
 
+const SYMBOLS = [`+`, `-`];
+
 const render = () => {
   const $app = document.querySelector(`#app`);
   $app.innerHTML = `
