@@ -1,9 +1,23 @@
 const state = {
-  firstNum: 0,
-  secondNum: 0,
-  symbol: null,
   carrotCount: 0,
-  tryAgain: `hide`
+  rightAnswer: 0,
+}
+
+const SYMBOLS = [`+`, `-`];
+
+const randNum = () => {
+  const newNum = Math.floor(Math.random() * 10);
+  return newNum;
+}
+
+const randSymbol = () => {
+  const newSymIndex = Math.floor(Math.random() * SYMBOLS.length);
+  return SYMBOLS[newSymIndex];
+}
+
+const addCarrot = () => {
+  state.carrotCount++;
+  render();
 }
 
 const render = () => {
