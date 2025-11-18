@@ -20,6 +20,13 @@ const addCarrot = () => {
   render();
 }
 
+// Component Functions
+const CarrotCount = () => {
+  const $carrorEl = document.createElement(`h2`);
+  $carrorEl.innerText = `Carrot Count: ${state.carrotCount}`;
+  return $carrorEl;
+}
+
 const render = () => {
   const $app = document.querySelector(`#app`);
   $app.innerHTML = `
@@ -27,6 +34,8 @@ const render = () => {
   <CarrotCount></CarrotCount>
   <MathForm></MathForm>
   <TryAgain></TryAgain>`;
+
+  document.querySelector(`CarrotCount`).replaceWith(CarrotCount());
 }
 
 render();
