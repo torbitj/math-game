@@ -3,6 +3,7 @@ const state = {
   secondNum: 0,
   symbol: null,
   carrotCount: 0,
+  rightAnswer: 0,
   isRightAnswer: true
 }
 
@@ -27,12 +28,11 @@ const addCarrot = () => {
 
 const testAnswer = (num) => {
   const { firstNum, secondNum } = state;
-  let rightAnswer = 0;
   if (state.symbol === `+`) {
-    rightAnswer = firstNum + secondNum;
+    state.rightAnswer = firstNum + secondNum;
   }
   else {
-    rightAnswer = firstNum - secondNum;
+    state.rightAnswer = firstNum - secondNum;
   }
   if (num !== rightAnswer) {
     state.isRightAnswer = false;
