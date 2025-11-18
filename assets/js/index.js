@@ -14,6 +14,12 @@ const randNum = (stateVar) => {
   render();
 }
 
+const randSymbol = () => {
+  const newSymIndex = Math.floor(Math.random() * SYMBOLS.length);
+  state.symbol = SYMBOLS[newSymIndex];
+  render();
+}
+
 const render = () => {
   const $app = document.querySelector(`#app`);
   $app.innerHTML = `
