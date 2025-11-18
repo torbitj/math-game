@@ -20,6 +20,11 @@ const addCarrot = () => {
   render();
 }
 
+const calcAnswer = (equation) => {
+  const answer = eval(equation);
+  state.rightAnswer = answer;
+}
+
 // Component Functions
 const CarrotCount = () => {
   const $carrorEl = document.createElement(`h2`);
@@ -27,15 +32,16 @@ const CarrotCount = () => {
   return $carrorEl;
 }
 
-const MathForm = () => {
+const MathElement = () => {
   const $form = document.createElement(`form`);
-  const equation = document.createElement(`p`);
+  const equationEl = document.createElement(`p`);
   const firstNum = randNum();
   const secondNum = randNum();
   const operator = randSymbol();
-  equation.innerText = `${firstNum} ${operator} ${secondNum}`;
+  calcAnswer(`${firstNum}${operator}${secondNum}`)
+  equationEl.innerText = `${firstNum} ${operator} ${secondNum}`;
   $form.innerHTML = `
-  ${equation}
+  ${equationEl}
   <label>
       &nbsp;=&nbsp;
       <input name="guess" type="number" />
@@ -44,6 +50,16 @@ const MathForm = () => {
   `;
   $form.addEventListener("submit", (event) => {
     event.preventDefault();
+    const messageEL = document.querySelector(`h3`);
+    const formData = new FormData(event.target);
+    const userAnswer = Number(formData.get(`guess`));
+    const { rightAnswer } = state;
+    if (userAnswer === rightAnswer) {
+      messageEL.innerText = `Great Job!`;
+      addCarrot();
+    } else {
+      messageEL.innerText = `Please try again`;
+    }
   });
 }
 
@@ -53,7 +69,7 @@ const render = () => {
   <h1>Bunny Math</h1>
   <CarrotCount></CarrotCount>
   <MathForm></MathForm>
-  <TryAgain></TryAgain>`;
+  <h3></h3>`;
 
   document.querySelector(`CarrotCount`).replaceWith(CarrotCount());
 }
